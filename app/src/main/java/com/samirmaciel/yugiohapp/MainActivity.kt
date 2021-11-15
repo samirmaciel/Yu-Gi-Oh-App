@@ -2,6 +2,7 @@ package com.samirmaciel.yugiohapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         initRecycler()
+
+        binding.motionLayoutMainActivity.setOnClickListener{
+            binding.motionLayoutMainActivity.transitionToStart()
+        }
     }
 
     override fun onResume() {
@@ -32,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecycler(){
         rvAdapter = CardPresenterAdapter {
-
+            binding.motionLayoutMainActivity.transitionToEnd()
         }
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvCards.adapter = rvAdapter
