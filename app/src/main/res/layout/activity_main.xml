@@ -32,7 +32,7 @@
         android:layout_width="200dp"
         android:layout_height="500dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/person1"
+        android:src="@drawable/person3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
