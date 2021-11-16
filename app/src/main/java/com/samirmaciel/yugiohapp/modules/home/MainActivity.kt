@@ -1,10 +1,10 @@
-package com.samirmaciel.yugiohapp
+package com.samirmaciel.yugiohapp.modules.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
+import com.samirmaciel.yugiohapp.getAllCards
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
 
 class MainActivity : AppCompatActivity() {
