@@ -6,8 +6,17 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="600">
-       <KeyFrameSet></KeyFrameSet>
+        motion:duration="1000">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/fragmentContainer"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/fragmentContainer"
+               motion:framePosition="12"
+               android:alpha="0" />
+       </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

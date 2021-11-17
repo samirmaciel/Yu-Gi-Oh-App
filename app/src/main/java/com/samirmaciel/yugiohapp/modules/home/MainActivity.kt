@@ -24,9 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         initRecycler()
 
-        binding.motionLayoutMainActivity.setOnClickListener{
-            binding.motionLayoutMainActivity.transitionToStart()
+        binding.motionLayoutMain.setOnClickListener{
+            binding.motionLayoutMain.transitionToStart()
         }
+
     }
 
     override fun onResume() {
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecycler(){
         rvAdapter = CardPresenterAdapter {
-            binding.motionLayoutMainActivity.transitionToEnd()
+            binding.motionLayoutMain.transitionToEnd()
         }
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvCards.adapter = rvAdapter

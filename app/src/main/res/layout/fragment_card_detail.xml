@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@android:color/transparent"
     tools:context=".modules.cardDetail.CardDetailFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Card Name"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -66,7 +66,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
@@ -74,12 +74,12 @@
         android:id="@+id/powerCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card Name"
+        android:text="Attack/Def"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="35dp"
         app:layout_constraintBottom_toBottomOf="@id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2" />
 
