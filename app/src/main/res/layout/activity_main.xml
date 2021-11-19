@@ -48,7 +48,7 @@
         android:layout_height="500dp"
         android:clickable="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/person3"
+        android:src="@drawable/person1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

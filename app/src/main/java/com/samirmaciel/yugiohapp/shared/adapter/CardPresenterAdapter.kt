@@ -18,7 +18,7 @@ class CardPresenterAdapter(private val itemClick : (CardEntity) -> Unit) : ListA
 
         fun bindCard(card : CardEntity, onItemClick : (CardEntity) -> Unit){
             Glide.with(bind.cardView).load(card.cardImages?.get(0)?.imageUrl).transition(
-                DrawableTransitionOptions.withCrossFade()).into(bind.imageViewCard)
+                DrawableTransitionOptions.withCrossFade()).into(bind.ivCard)
             bind.cardView.setOnClickListener{
                 onItemClick(card)
             }

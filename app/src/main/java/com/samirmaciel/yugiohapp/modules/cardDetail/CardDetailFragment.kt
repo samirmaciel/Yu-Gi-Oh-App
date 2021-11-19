@@ -2,6 +2,7 @@ package com.samirmaciel.yugiohapp.modules.cardDetail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -12,6 +13,8 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
+
+    private var transitionStated = false
 
     private var _binding : FragmentCardDetailBinding? = null
     private val binding : FragmentCardDetailBinding get() = _binding!!
@@ -25,8 +28,19 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
     override fun onResume() {
         super.onResume()
 
+        binding.ivCard.setOnClickListener{
+            if(transitionStated){
+                binding.mlCardDetail.transitionToStart()
+                transitionStated = false
+            }else{
+                binding.mlCardDetail.transitionToEnd()
+                transitionStated = true
+            }
+
+        }
+
         viewModel.targetDetailCard.observe(this){
-            Glide.with(requireContext()).load(it.cardImages?.get(0)?.imageUrl).transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewCard)
+            Glide.with(requireContext()).load(it.cardImages?.get(0)?.imageUrl).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
             binding.descriptionCard.setText(it.desc)
             binding.titleCard.setText(it.name)
             binding.typeCard.setText(it.type)
