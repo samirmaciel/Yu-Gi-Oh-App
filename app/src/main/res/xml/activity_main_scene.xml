@@ -24,7 +24,7 @@
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/imageView"
+            android:id="@+id/ivPerson"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="200dp"
             android:layout_height="500dp"
@@ -32,7 +32,7 @@
             android:translationX="200dp" />
         <Constraint
             android:id="@+id/rvCards"
-            motion:layout_constraintEnd_toStartOf="@+id/imageView"
+            motion:layout_constraintEnd_toStartOf="@+id/ivPerson"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             motion:layout_constraintBottom_toTopOf="parent"

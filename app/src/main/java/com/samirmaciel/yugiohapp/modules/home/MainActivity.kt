@@ -10,6 +10,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private var motionLayoutStarted = false
+
     private var _binding : ActivityMainBinding? = null
     private val binding : ActivityMainBinding get() = _binding!!
     lateinit var rvAdapter : CardPresenterAdapter
@@ -28,7 +30,11 @@ class MainActivity : AppCompatActivity() {
         initRecycler()
 
         binding.motionLayoutMain.setOnClickListener{
+            if(motionLayoutStarted){
+                binding.ivPerson.setImageResource(viewModel.getRandomImagePerson())
+            }
             binding.motionLayoutMain.transitionToStart()
+            motionLayoutStarted = false
         }
 
     }
@@ -45,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         rvAdapter = CardPresenterAdapter {
             binding.motionLayoutMain.transitionToEnd()
             viewModel.targetDetailCard.value = it
+            motionLayoutStarted = true
         }
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvCards.adapter = rvAdapter

@@ -3,6 +3,7 @@ package com.samirmaciel.yugiohapp.modules.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.shared.dataStore.RepositoryAPI
 import com.samirmaciel.yugiohapp.shared.model.CardEntity
 import com.samirmaciel.yugiohapp.shared.model.CardPresenter
@@ -38,5 +39,20 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
 
             })
         }
+    }
+
+    fun getRandomImagePerson() : Int {
+        val chosenNumber = (1..5).random()
+        return getMapImagePersons()[chosenNumber]!!
+    }
+
+    fun getMapImagePersons() : Map<Int, Int>{
+        return mapOf(
+            1 to R.drawable.person1,
+            2 to R.drawable.person2,
+            3 to R.drawable.person3,
+            4 to R.drawable.person4,
+            5 to R.drawable.person5
+        )
     }
 }
