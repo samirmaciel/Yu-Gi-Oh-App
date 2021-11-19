@@ -5,28 +5,32 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.samirmaciel.yugiohapp.databinding.RecyclerItemCardBinding
+import com.samirmaciel.yugiohapp.shared.model.CardEntity
 import com.samirmaciel.yugiohapp.shared.model.CardPresenter
 
-class CardPresenterAdapter(val itemClick : (CardPresenter) -> Unit) : ListAdapter<CardPresenter, CardPresenterAdapter.ViewHolder>(CardDiffiUtil()) {
+class CardPresenterAdapter(private val itemClick : (CardEntity) -> Unit) : ListAdapter<CardEntity, CardPresenterAdapter.ViewHolder>(CardDiffiUtil()) {
 
 
     inner class ViewHolder(private val bind : RecyclerItemCardBinding) : RecyclerView.ViewHolder(bind.root){
 
-        fun bindCard(card : CardPresenter, onItemClick : (CardPresenter) -> Unit){
-            bind.imageViewCard.setImageResource(card.image_poster)
+        fun bindCard(card : CardEntity, onItemClick : (CardEntity) -> Unit){
+            Glide.with(bind.cardView).load(card.cardImages?.get(0)?.imageUrl).transition(
+                DrawableTransitionOptions.withCrossFade()).into(bind.imageViewCard)
             bind.cardView.setOnClickListener{
                 onItemClick(card)
             }
         }
     }
 
-    class CardDiffiUtil : DiffUtil.ItemCallback<CardPresenter>(){
-        override fun areItemsTheSame(oldItem: CardPresenter, newItem: CardPresenter): Boolean {
+    class CardDiffiUtil : DiffUtil.ItemCallback<CardEntity>(){
+        override fun areItemsTheSame(oldItem: CardEntity, newItem: CardEntity): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: CardPresenter, newItem: CardPresenter): Boolean {
+        override fun areContentsTheSame(oldItem: CardEntity, newItem: CardEntity): Boolean {
             return oldItem.name == newItem.name
         }
 

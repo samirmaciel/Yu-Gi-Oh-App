@@ -7,7 +7,7 @@ class APIDataStore {
 
     companion object {
 
-        const val BASE_URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php"
+        const val BASE_URL = "https://db.ygoprodeck.com/api/v7/"
 
         private var retrofit: Retrofit? = null
 

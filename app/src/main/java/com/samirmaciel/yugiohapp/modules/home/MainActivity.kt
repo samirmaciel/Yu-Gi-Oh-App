@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
 import com.samirmaciel.yugiohapp.getAllCards
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private var _binding : ActivityMainBinding? = null
     private val binding : ActivityMainBinding get() = _binding!!
     lateinit var rvAdapter : CardPresenterAdapter
+
+    private val viewModel : MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +36,15 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        rvAdapter.submitList(getAllCards())
+        viewModel.listOfCards.observe(this){
+            rvAdapter.submitList(it)
+        }
     }
 
     private fun initRecycler(){
         rvAdapter = CardPresenterAdapter {
             binding.motionLayoutMain.transitionToEnd()
+            viewModel.targetDetailCard.value = it
         }
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvCards.adapter = rvAdapter
