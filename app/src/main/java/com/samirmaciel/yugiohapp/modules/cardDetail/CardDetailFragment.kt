@@ -1,18 +1,21 @@
 package com.samirmaciel.yugiohapp.modules.cardDetail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentCardDetailBinding
 import com.samirmaciel.yugiohapp.modules.home.MainViewModel
+import com.samirmaciel.yugiohapp.shared.OnClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.Exception
 
 class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
+
+    lateinit var onClickListenerListener : OnClickListener
 
     private var transitionStated = false
 
@@ -36,7 +39,10 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                 binding.mlCardDetail.transitionToEnd()
                 transitionStated = true
             }
+        }
 
+        binding.ivArrowBack.setOnClickListener{
+            onClickListenerListener.backToHome()
         }
 
         viewModel.targetDetailCard.observe(this){
@@ -50,5 +56,15 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        try {
+            onClickListenerListener = context as OnClickListener
+        }catch (e : Exception){
+
+        }
     }
 }

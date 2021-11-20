@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.samirmaciel.yugiohapp.R
+import com.samirmaciel.yugiohapp.shared.consts.SMALL_CARD
 import com.samirmaciel.yugiohapp.shared.dataStore.RepositoryAPI
 import com.samirmaciel.yugiohapp.shared.model.CardEntity
-import com.samirmaciel.yugiohapp.shared.model.CardPresenter
 import com.samirmaciel.yugiohapp.shared.model.DataResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -18,6 +18,7 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
     var targetDetailCard : MutableLiveData<CardEntity> = MutableLiveData()
     var listOfCards : MutableLiveData<MutableList<CardEntity>> = MutableLiveData()
 
+    var onClickBackFragmentState : String = SMALL_CARD
 
     init {
         getAllCards()
@@ -32,11 +33,8 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
                 ) {
                     listOfCards.postValue(response.body()?.cardList)
                 }
-
                 override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-
                 }
-
             })
         }
     }
@@ -46,7 +44,7 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
         return getMapImagePersons()[chosenNumber]!!
     }
 
-    fun getMapImagePersons() : Map<Int, Int>{
+    private fun getMapImagePersons() : Map<Int, Int>{
         return mapOf(
             1 to R.drawable.person1,
             2 to R.drawable.person2,

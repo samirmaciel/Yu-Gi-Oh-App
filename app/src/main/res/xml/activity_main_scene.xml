@@ -17,6 +17,8 @@
                motion:framePosition="12"
                android:alpha="0" />
        </KeyFrameSet>
+
+
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

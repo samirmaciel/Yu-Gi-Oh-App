@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
-import com.samirmaciel.yugiohapp.getAllCards
+import com.samirmaciel.yugiohapp.shared.OnClickListener
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
+import com.samirmaciel.yugiohapp.shared.consts.SMALL_CARD
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnClickListener {
 
     private var motionLayoutStarted = false
 
@@ -30,17 +31,22 @@ class MainActivity : AppCompatActivity() {
         initRecycler()
 
         binding.motionLayoutMain.setOnClickListener{
-            if(motionLayoutStarted){
-                binding.ivPerson.setImageResource(viewModel.getRandomImagePerson())
+            if(viewModel.onClickBackFragmentState == SMALL_CARD){
+                if(motionLayoutStarted){
+                    binding.ivPerson.setImageResource(viewModel.getRandomImagePerson())
+                }
+                binding.motionLayoutMain.transitionToStart()
+                motionLayoutStarted = false
             }
-            binding.motionLayoutMain.transitionToStart()
-            motionLayoutStarted = false
+
         }
 
     }
 
     override fun onResume() {
         super.onResume()
+
+        binding.motionLayoutMain.isClickable = false
 
         viewModel.listOfCards.observe(this){
             rvAdapter.submitList(it)
@@ -60,5 +66,9 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun backToHome() {
+        binding.motionLayoutMain.transitionToStart()
     }
 }

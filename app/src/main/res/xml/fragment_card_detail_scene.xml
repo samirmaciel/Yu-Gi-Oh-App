@@ -48,10 +48,29 @@
                motion:motionTarget="@+id/descriptionCard"
                motion:framePosition="50"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/ivArrowBack"
+               motion:framePosition="50"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/ivArrowBack"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/ivCard"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="200dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toTopOf="@+id/imageView2"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp" />
+
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
