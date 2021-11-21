@@ -16,6 +16,14 @@
                motion:motionTarget="@+id/fragmentContainer"
                motion:framePosition="12"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tvCountCards"
+               motion:framePosition="20"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tvCountCards"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
 
 

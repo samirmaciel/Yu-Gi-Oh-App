@@ -40,7 +40,7 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
     }
 
     fun getRandomImagePerson() : Int {
-        val chosenNumber = (1..5).random()
+        val chosenNumber = (1..15).random()
         return getMapImagePersons()[chosenNumber]!!
     }
 
@@ -50,7 +50,17 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
             2 to R.drawable.person2,
             3 to R.drawable.person3,
             4 to R.drawable.person4,
-            5 to R.drawable.person5
+            5 to R.drawable.person5,
+            6 to R.drawable.person6,
+            7 to R.drawable.person7,
+            8 to R.drawable.person8,
+            9 to R.drawable.person9,
+            10 to R.drawable.person10,
+            11 to R.drawable.person11,
+            12 to R.drawable.person12,
+            13 to R.drawable.person13,
+            14 to R.drawable.person14,
+            15 to R.drawable.person15,
         )
     }
 }

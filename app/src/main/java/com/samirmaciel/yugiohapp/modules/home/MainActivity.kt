@@ -3,6 +3,7 @@ package com.samirmaciel.yugiohapp.modules.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
 import com.samirmaciel.yugiohapp.shared.OnClickListener
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
@@ -30,16 +31,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         initRecycler()
 
-        binding.motionLayoutMain.setOnClickListener{
-            if(viewModel.onClickBackFragmentState == SMALL_CARD){
-                if(motionLayoutStarted){
-                    binding.ivPerson.setImageResource(viewModel.getRandomImagePerson())
-                }
-                binding.motionLayoutMain.transitionToStart()
-                motionLayoutStarted = false
-            }
-
-        }
 
     }
 
@@ -48,8 +39,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         binding.motionLayoutMain.isClickable = false
 
+
         viewModel.listOfCards.observe(this){
             rvAdapter.submitList(it)
+            binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
     }
 
@@ -68,7 +61,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         _binding = null
     }
 
+    private fun setRandomPersonImage(imageResource : Int){
+        binding.ivPerson.setImageResource(imageResource)
+    }
+
     override fun backToHome() {
         binding.motionLayoutMain.transitionToStart()
+        setRandomPersonImage(viewModel.getRandomImagePerson())
     }
 }
