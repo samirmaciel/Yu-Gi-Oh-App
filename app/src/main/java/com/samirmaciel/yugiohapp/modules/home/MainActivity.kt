@@ -31,14 +31,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         initRecycler()
 
-
     }
 
     override fun onResume() {
         super.onResume()
 
         binding.motionLayoutMain.isClickable = false
-
 
         viewModel.listOfCards.observe(this){
             rvAdapter.submitList(it)
@@ -47,13 +45,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun initRecycler(){
+
         rvAdapter = CardPresenterAdapter {
             binding.motionLayoutMain.transitionToEnd()
             viewModel.targetDetailCard.value = it
             motionLayoutStarted = true
         }
+
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvCards.adapter = rvAdapter
+
     }
 
     override fun onDestroy() {
@@ -62,7 +63,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun setRandomPersonImage(imageResource : Int){
+
         binding.ivPerson.setImageResource(imageResource)
+
     }
 
     override fun backToHome() {

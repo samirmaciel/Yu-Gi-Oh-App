@@ -32,37 +32,45 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         super.onResume()
 
         binding.ivCard.setOnClickListener{
-            if(transitionStated){
-                binding.mlCardDetail.transitionToStart()
-                transitionStated = false
-            }else{
-                binding.mlCardDetail.transitionToEnd()
-                transitionStated = true
-            }
+
+            binding.mlCardDetail.transitionToEnd()
+        }
+
+        binding.btnBack.setOnClickListener{
+
+            binding.mlCardDetail.transitionToStart()
         }
 
         binding.ivArrowBack.setOnClickListener{
+
             onClickListenerListener.backToHome()
+
         }
 
         viewModel.targetDetailCard.observe(this){
+
             Glide.with(requireContext()).load(it.cardImages?.get(0)?.imageUrl).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
             binding.descriptionCard.setText(it.desc)
             binding.titleCard.setText(it.name)
             binding.typeCard.setText(it.type)
             binding.powerCard.setText("${it.atk}/${it.def}")
+
         }
     }
     override fun onDestroy() {
         super.onDestroy()
+
         _binding = null
+
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
         try {
+
             onClickListenerListener = context as OnClickListener
+
         }catch (e : Exception){
 
         }
