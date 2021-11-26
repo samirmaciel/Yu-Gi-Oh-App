@@ -22,18 +22,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.cardview.widget.CardView
         android:id="@+id/btnBack"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivCard"
-        android:text="Voltar"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/buttondefault"/>
+        app:layout_constraintTop_toBottomOf="@id/ivCard" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttondefault"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:text="@string/title_back"/>
+    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/ivArrowBack"

@@ -59,7 +59,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+
         _binding = null
+
     }
 
     private fun setRandomPersonImage(imageResource : Int){

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YuGiOhApp</string>
     <string name="title_count_cards">Cartas:</string>
+    <string name="title_back">Voltar</string>
 </resources>
