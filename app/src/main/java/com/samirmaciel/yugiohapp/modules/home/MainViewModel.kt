@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.samirmaciel.yugiohapp.R
-import com.samirmaciel.yugiohapp.shared.consts.SMALL_CARD
 import com.samirmaciel.yugiohapp.shared.dataStore.RepositoryAPI
 import com.samirmaciel.yugiohapp.shared.model.CardEntity
 import com.samirmaciel.yugiohapp.shared.model.DataResponse
@@ -18,7 +17,6 @@ class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
     var targetDetailCard : MutableLiveData<CardEntity> = MutableLiveData()
     var listOfCards : MutableLiveData<MutableList<CardEntity>> = MutableLiveData()
 
-    var onClickBackFragmentState : String = SMALL_CARD
 
     init {
         getAllCards()

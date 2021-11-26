@@ -86,7 +86,7 @@
 
 
     <ScrollView
-        android:id="@+id/descriptionCard"
+        android:id="@+id/svDescriptionCard"
         android:layout_width="0dp"
         android:layout_height="140dp"
         android:layout_marginHorizontal="20dp"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/typeCard" >
 
         <TextView
-            android:id="@+id/textDescriotionCard"
+            android:id="@+id/textDescriptionCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"

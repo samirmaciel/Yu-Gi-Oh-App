@@ -17,8 +17,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
     lateinit var onClickListenerListener : OnClickListener
 
-    private var transitionStated = false
-
     private var _binding : FragmentCardDetailBinding? = null
     private val binding : FragmentCardDetailBinding get() = _binding!!
     private val viewModel : MainViewModel by sharedViewModel()
@@ -50,7 +48,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         viewModel.targetDetailCard.observe(this){
 
             Glide.with(requireContext()).load(it.cardImages?.get(0)?.imageUrl).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
-            binding.textDescriotionCard.setText(it.desc)
+            binding.textDescriptionCard.setText(it.desc)
             binding.titleCard.setText(it.name)
             binding.typeCard.setText(it.type)
             binding.powerCard.setText("${it.atk}/${it.def}")
