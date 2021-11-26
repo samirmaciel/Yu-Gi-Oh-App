@@ -84,19 +84,25 @@
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
-    <TextView
+
+    <ScrollView
         android:id="@+id/descriptionCard"
         android:layout_width="0dp"
         android:layout_height="140dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
-        android:text="Card Name"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/typeCard" />
+        app:layout_constraintTop_toBottomOf="@+id/typeCard" >
+
+        <TextView
+            android:id="@+id/textDescriotionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="@color/white"/>
+    </ScrollView>
 
     <TextView
         android:id="@+id/typeCard"
