@@ -7,7 +7,6 @@ import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
 import com.samirmaciel.yugiohapp.shared.OnClickListener
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
-import com.samirmaciel.yugiohapp.shared.consts.SMALL_CARD
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), OnClickListener {
