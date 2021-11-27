@@ -9,13 +9,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentCardDetailBinding
 import com.samirmaciel.yugiohapp.modules.home.MainViewModel
-import com.samirmaciel.yugiohapp.shared.OnClickListener
+import com.samirmaciel.yugiohapp.shared.ClickListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
 
 class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
-    lateinit var onClickListenerListener : OnClickListener
+    lateinit var activityClickListener : ClickListener
 
     private var _binding : FragmentCardDetailBinding? = null
     private val binding : FragmentCardDetailBinding get() = _binding!!
@@ -41,7 +41,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         binding.ivArrowBack.setOnClickListener{
 
-            onClickListenerListener.backToHome()
+            activityClickListener.backViewToHome()
 
         }
 
@@ -67,7 +67,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         try {
 
-            onClickListenerListener = context as OnClickListener
+            activityClickListener = context as ClickListener
 
         }catch (e : Exception){
 

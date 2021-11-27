@@ -5,22 +5,22 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
-import com.samirmaciel.yugiohapp.shared.OnClickListener
+import com.samirmaciel.yugiohapp.shared.ClickListener
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), ClickListener {
 
-    private var motionLayoutStarted = false
 
     private var _binding : ActivityMainBinding? = null
     private val binding : ActivityMainBinding get() = _binding!!
-    lateinit var rvAdapter : CardPresenterAdapter
+    lateinit var rvCardPresenterAdapter : CardPresenterAdapter
 
     private val viewModel : MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -35,24 +35,23 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        binding.motionLayoutMain.isClickable = false
 
         viewModel.listOfCards.observe(this){
-            rvAdapter.submitList(it)
+
+            rvCardPresenterAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
     }
 
     private fun initRecycler(){
 
-        rvAdapter = CardPresenterAdapter {
+        rvCardPresenterAdapter = CardPresenterAdapter {
             binding.motionLayoutMain.transitionToEnd()
             viewModel.targetDetailCard.value = it
-            motionLayoutStarted = true
         }
 
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvCards.adapter = rvAdapter
+        binding.rvCards.adapter = rvCardPresenterAdapter
 
     }
 
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     }
 
-    override fun backToHome() {
+    override fun backViewToHome() {
         binding.motionLayoutMain.transitionToStart()
         setRandomPersonImage(viewModel.getRandomImagePerson())
     }
