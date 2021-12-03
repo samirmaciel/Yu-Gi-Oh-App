@@ -1,6 +1,6 @@
 package com.samirmaciel.yugiohapp
 
-import com.samirmaciel.yugiohapp.shared.model.CardPresenter
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardPresenter
 
 
 fun getAllCards() : List<CardPresenter> {

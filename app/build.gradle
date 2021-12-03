@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -57,8 +58,16 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
+    //Room
+    implementation "androidx.room:room-runtime:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
+
     //Koin
-    // Koin main features for Android (Scope,ViewModel ...)
+// Koin main features for Android (Scope,ViewModel ...)
     implementation "io.insert-koin:koin-android:$koin_version"
 // Koin Java Compatibility
     implementation "io.insert-koin:koin-android-compat:$koin_version"
@@ -66,6 +75,5 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
 // Koin for Navigation Graph
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
-// Koin for Jetpack Compose
-    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
 }

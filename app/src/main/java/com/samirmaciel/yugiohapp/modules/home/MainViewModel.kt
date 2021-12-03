@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.samirmaciel.yugiohapp.R
-import com.samirmaciel.yugiohapp.shared.dataStore.RepositoryAPI
-import com.samirmaciel.yugiohapp.shared.model.CardEntity
-import com.samirmaciel.yugiohapp.shared.model.DataResponse
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.RepositoryAPI
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardEntity
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.DataResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

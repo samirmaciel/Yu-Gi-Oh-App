@@ -1,4 +1,4 @@
-package com.samirmaciel.yugiohapp.shared.dataStore
+package com.samirmaciel.yugiohapp.shared.data.dataExternal.data_source
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

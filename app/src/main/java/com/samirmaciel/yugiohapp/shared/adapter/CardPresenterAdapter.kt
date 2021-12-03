@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.samirmaciel.yugiohapp.databinding.RecyclerItemCardBinding
-import com.samirmaciel.yugiohapp.shared.model.CardEntity
-import com.samirmaciel.yugiohapp.shared.model.CardPresenter
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardEntity
 
 class CardPresenterAdapter(private val itemClick : (CardEntity) -> Unit) : ListAdapter<CardEntity, CardPresenterAdapter.ViewHolder>(CardDiffiUtil()) {
 

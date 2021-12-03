@@ -1,4 +1,4 @@
-package com.samirmaciel.yugiohapp.shared.model
+package com.samirmaciel.yugiohapp.shared.data.dataExternal.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
