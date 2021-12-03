@@ -47,7 +47,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         viewModel.targetDetailCard.observe(this){
 
-            Glide.with(requireContext()).load(it.cardImages?.get(0)?.imageUrl).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
+            Glide.with(requireContext()).load(it.image).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
             binding.textDescriptionCard.setText(it.desc)
             binding.titleCard.setText(it.name)
             binding.typeCard.setText(it.type)

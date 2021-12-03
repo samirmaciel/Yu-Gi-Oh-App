@@ -1,4 +1,4 @@
-package com.samirmaciel.yugiohapp.shared.data.dataInternal.model
+package com.samirmaciel.yugiohapp.shared.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -7,29 +7,32 @@ import androidx.room.PrimaryKey
 @Entity
 data class Card(
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id : Long,
 
     @ColumnInfo
     val name : String,
 
     @ColumnInfo
-    val type : String,
+    val type : String?,
 
     @ColumnInfo
-    val desc : String,
+    val desc : String?,
 
     @ColumnInfo
-    val atk : Long,
+    val atk : Long?,
 
     @ColumnInfo
-    val def : Long,
+    val def : Long?,
 
     @ColumnInfo
-    val level : Long,
+    val level : Long?,
 
     @ColumnInfo
-    val race : Long?,
+    val race : String?,
+
+    @ColumnInfo
+    val atribute : String?,
 
     @ColumnInfo
     val image : String?,

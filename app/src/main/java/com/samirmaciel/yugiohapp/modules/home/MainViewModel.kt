@@ -1,39 +1,57 @@
 package com.samirmaciel.yugiohapp.modules.home
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.samirmaciel.yugiohapp.R
-import com.samirmaciel.yugiohapp.shared.data.dataExternal.RepositoryAPI
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.repository.RepositoryAPI
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardEntity
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.DataResponse
+import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.toCard
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
+import com.samirmaciel.yugiohapp.shared.data.dataInternal.repository.CardRepositoryImpl
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.stream.Collectors
 
-class MainViewModel(private val repository : RepositoryAPI) : ViewModel() {
+class MainViewModel(private val repositoryExternal : RepositoryAPI, private val repositoryInternal : CardRepositoryImpl) : ViewModel() {
 
-    var targetDetailCard : MutableLiveData<CardEntity> = MutableLiveData()
-    var listOfCards : MutableLiveData<MutableList<CardEntity>> = MutableLiveData()
+    var targetDetailCard : MutableLiveData<Card> = MutableLiveData()
+    var listOfCards : MutableLiveData<MutableList<Card>> = MutableLiveData()
 
 
     init {
         getAllCards()
     }
 
-    fun getAllCards(){
+    private fun getAllCards(){
         viewModelScope.launch {
-            repository.getAllCards().enqueue(object : Callback<DataResponse>{
+            repositoryExternal.getAllCards().enqueue(object : Callback<DataResponse>{
+                @RequiresApi(Build.VERSION_CODES.N)
                 override fun onResponse(
                     call: Call<DataResponse>,
                     response: Response<DataResponse>
                 ) {
-                    listOfCards.postValue(response.body()?.cardList)
+
+                    val listCard = response.body()?.cardList?.stream()?.map {
+                        it.toCard()
+                    }?.collect(Collectors.toList())
+
+                    listOfCards.postValue(listCard)
                 }
                 override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 }
             })
+        }
+    }
+
+    fun insertCard(card: Card){
+        viewModelScope.launch {
+            repositoryInternal.insertCard(card)
         }
     }
 

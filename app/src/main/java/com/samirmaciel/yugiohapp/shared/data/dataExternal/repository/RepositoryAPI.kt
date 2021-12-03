@@ -1,4 +1,4 @@
-package com.samirmaciel.yugiohapp.shared.data.dataExternal
+package com.samirmaciel.yugiohapp.shared.data.dataExternal.repository
 
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.DataResponse
 import retrofit2.Call

@@ -1,10 +1,10 @@
 package com.samirmaciel.yugiohapp.shared.domain.repository
 
-import com.samirmaciel.yugiohapp.shared.data.dataInternal.model.Card
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
 
 interface CardRepository {
 
-    fun getAllCards() : List<Card>
+    suspend fun getAllCards() : List<Card>
 
     suspend fun findById(id : Long) : Card?
 

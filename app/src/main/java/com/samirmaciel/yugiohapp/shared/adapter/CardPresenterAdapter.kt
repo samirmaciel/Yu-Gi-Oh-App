@@ -9,14 +9,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.samirmaciel.yugiohapp.databinding.RecyclerItemCardBinding
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardEntity
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
 
-class CardPresenterAdapter(private val itemClick : (CardEntity) -> Unit) : ListAdapter<CardEntity, CardPresenterAdapter.ViewHolder>(CardDiffiUtil()) {
+class CardPresenterAdapter(private val itemClick : (Card) -> Unit) : ListAdapter<Card, CardPresenterAdapter.ViewHolder>(CardDiffiUtil()) {
 
 
     inner class ViewHolder(private val bind : RecyclerItemCardBinding) : RecyclerView.ViewHolder(bind.root){
 
-        fun bindCard(card : CardEntity, onItemClick : (CardEntity) -> Unit){
-            Glide.with(bind.cardView).load(card.cardImages?.get(0)?.imageUrl).transition(
+        fun bindCard(card : Card, onItemClick : (Card) -> Unit){
+            Glide.with(bind.cardView).load(card.smallimage).transition(
                 DrawableTransitionOptions.withCrossFade()).into(bind.ivCard)
             bind.cardView.setOnClickListener{
                 onItemClick(card)
@@ -24,12 +25,12 @@ class CardPresenterAdapter(private val itemClick : (CardEntity) -> Unit) : ListA
         }
     }
 
-    class CardDiffiUtil : DiffUtil.ItemCallback<CardEntity>(){
-        override fun areItemsTheSame(oldItem: CardEntity, newItem: CardEntity): Boolean {
+    class CardDiffiUtil : DiffUtil.ItemCallback<Card>(){
+        override fun areItemsTheSame(oldItem: Card, newItem: Card): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: CardEntity, newItem: CardEntity): Boolean {
+        override fun areContentsTheSame(oldItem: Card, newItem: Card): Boolean {
             return oldItem.name == newItem.name
         }
 

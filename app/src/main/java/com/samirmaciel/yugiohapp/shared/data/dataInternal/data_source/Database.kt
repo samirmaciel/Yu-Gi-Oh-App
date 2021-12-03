@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.samirmaciel.yugiohapp.shared.data.dataInternal.model.Card
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
 
 @Database( entities = [Card::class], version = 1)
 abstract class DatabaseRoom : RoomDatabase() {

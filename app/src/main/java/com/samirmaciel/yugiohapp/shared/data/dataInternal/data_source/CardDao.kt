@@ -1,14 +1,14 @@
 package com.samirmaciel.yugiohapp.shared.data.dataInternal.data_source
 
 import androidx.room.*
-import com.samirmaciel.yugiohapp.shared.data.dataInternal.model.Card
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
 
 
 @Dao
 interface CardDao {
 
     @Query("SELECT * FROM card")
-    fun getAllCards() : List<Card>
+    suspend fun getAllCards() : List<Card>
 
     @Query ("SELECT * FROM card WHERE id == :id")
     suspend fun findById(id : Long) : Card?
