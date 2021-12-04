@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
         rvCardPresenterAdapter = CardPresenterAdapter {
             binding.motionLayoutMain.transitionToEnd()
             viewModel.targetDetailCard.value = it
+            viewModel.findCardById(it.id)
         }
 
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

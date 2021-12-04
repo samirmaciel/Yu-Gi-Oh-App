@@ -3,6 +3,7 @@ package com.samirmaciel.yugiohapp.modules.cardDetail
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -10,6 +11,7 @@ import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentCardDetailBinding
 import com.samirmaciel.yugiohapp.modules.home.MainViewModel
 import com.samirmaciel.yugiohapp.shared.ClickListener
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
 
@@ -31,7 +33,11 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         binding.ivCard.setOnClickListener{
 
-            binding.mlCardDetail.transitionToEnd()
+            binding.mlCardDetail.transitionToEnd{
+                if(viewModel.targetCardState.value == 1){
+                    binding.btnSave.visibility = View.GONE
+                }
+            }
         }
 
         binding.btnBack.setOnClickListener{
@@ -43,6 +49,18 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
             activityClickListener.backViewToHome()
 
+        }
+
+        binding.btnSave.setOnClickListener{
+            viewModel.insertCard(viewModel.targetDetailCard.value!!)
+            viewModel.targetCardState.value = 1
+            Toast.makeText(requireContext(), "Carta salva com sucesso!", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.targetCardState.observe(this){
+            if(it == 1){
+                binding.btnSave.visibility = View.GONE
+           }
         }
 
         viewModel.targetDetailCard.observe(this){
@@ -72,5 +90,9 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         }catch (e : Exception){
 
         }
+    }
+
+    private fun checkCardInDatabaseInternal(card: Card){
+
     }
 }

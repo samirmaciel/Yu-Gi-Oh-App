@@ -32,6 +32,14 @@
                motion:motionTarget="@+id/rvMyDeck"
                motion:framePosition="80"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tvNoneCards"
+               motion:framePosition="80"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tvNoneCards"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 

@@ -21,6 +21,7 @@ import java.util.stream.Collectors
 class MainViewModel(private val repositoryExternal : RepositoryAPI, private val repositoryInternal : CardRepositoryImpl) : ViewModel() {
 
     var targetDetailCard : MutableLiveData<Card> = MutableLiveData()
+    var targetCardState : MutableLiveData<Int> = MutableLiveData(0)
     var listOfCards : MutableLiveData<MutableList<Card>> = MutableLiveData()
 
 
@@ -46,6 +47,17 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
                 override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 }
             })
+        }
+    }
+
+    fun findCardById(id : Long){
+        viewModelScope.launch {
+            val card = repositoryInternal.findById(id)
+            if(card != null){
+                targetCardState.postValue(1)
+            }else{
+                targetCardState.postValue(0)
+            }
         }
     }
 

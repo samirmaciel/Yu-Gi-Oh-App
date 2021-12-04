@@ -64,6 +64,14 @@
                motion:motionTarget="@+id/btnBack"
                motion:framePosition="50"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/btnSave"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/btnSave"
+               motion:framePosition="50"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 
