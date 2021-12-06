@@ -1,6 +1,5 @@
 package com.samirmaciel.yugiohapp.modules.home
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -8,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
 import com.samirmaciel.yugiohapp.shared.ClickListener
-import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
+import com.samirmaciel.yugiohapp.shared.adapter.CardRecycerViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), ClickListener {
@@ -16,7 +15,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     private var _binding : ActivityMainBinding? = null
     private val binding : ActivityMainBinding get() = _binding!!
-    lateinit var rvCardPresenterAdapter : CardPresenterAdapter
+    lateinit var rvCardRecycerViewAdapter : CardRecycerViewAdapter
 
     private val viewModel : MainViewModel by viewModel()
 
@@ -42,35 +41,30 @@ class MainActivity : AppCompatActivity(), ClickListener {
         }
 
         viewModel.listOfCards.observe(this){
-            rvCardPresenterAdapter.submitList(it)
+            rvCardRecycerViewAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
     }
 
     private fun initRecycler(){
 
-        rvCardPresenterAdapter = CardPresenterAdapter {
+        rvCardRecycerViewAdapter = CardRecycerViewAdapter {
             binding.motionLayoutMain.transitionToEnd()
             viewModel.targetDetailCard.value = it
             viewModel.findCardById(it.id)
         }
 
         binding.rvCards.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvCards.adapter = rvCardPresenterAdapter
-
+        binding.rvCards.adapter = rvCardRecycerViewAdapter
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
         _binding = null
-
     }
 
     private fun setRandomPersonImage(imageResource : Int){
-
         binding.ivPerson.setImageResource(imageResource)
-
     }
 
     override fun transitionToStart(route : String) {

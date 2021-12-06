@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="1000">
+        motion:duration="500">
        <KeyFrameSet>
            <KeyAttribute
                motion:motionTarget="@+id/ivCard"
@@ -40,12 +40,44 @@
                motion:motionTarget="@+id/tvNoneCards"
                motion:framePosition="100"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/ivArrowBack"
+               motion:framePosition="80"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/ivArrowBack"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/ivArrowBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp">
+            <CustomAttribute
+                motion:attributeName="enabled"
+                motion:customBoolean="true" />
+        </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/ivArrowBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp">
+            <CustomAttribute
+                motion:attributeName="enabled"
+                motion:customBoolean="false" />
+        </Constraint>
     </ConstraintSet>
 </MotionScene>

@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.RecyclerItemCardBinding
-import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardEntity
 import com.samirmaciel.yugiohapp.shared.domain.model.Card
 
-class CardPresenterAdapter(private val itemClick : (Card) -> Unit) : ListAdapter<Card, CardPresenterAdapter.ViewHolder>(CardDiffiUtil()) {
+class CardRecycerViewAdapter(private val itemClick : (Card) -> Unit) : ListAdapter<Card, CardRecycerViewAdapter.ViewHolder>(CardDiffiUtil()) {
 
 
     inner class ViewHolder(private val bind : RecyclerItemCardBinding) : RecyclerView.ViewHolder(bind.root){
 
         fun bindCard(card : Card, onItemClick : (Card) -> Unit){
-            Glide.with(bind.cardView).load(card.smallimage).transition(
+            Glide.with(bind.cardView).load(card.smallimage).placeholder(R.drawable.placeholder_card).transition(
                 DrawableTransitionOptions.withCrossFade()).into(bind.ivCard)
             bind.cardView.setOnClickListener{
                 onItemClick(card)

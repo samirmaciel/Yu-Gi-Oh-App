@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentMyDeckBinding
 import com.samirmaciel.yugiohapp.shared.ClickListener
-import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
+import com.samirmaciel.yugiohapp.shared.adapter.CardRecycerViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
@@ -19,7 +18,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     lateinit var backToHomeAnimation : ClickListener
     private var _binding : FragmentMyDeckBinding? = null
     private val binding : FragmentMyDeckBinding get() = _binding!!
-    lateinit var rvAdapter : CardPresenterAdapter
+    lateinit var rvAdapter : CardRecycerViewAdapter
     private val viewModel : MyDeckViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +48,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     }
 
     private fun initRecyclerView(){
-        rvAdapter = CardPresenterAdapter {
+        rvAdapter = CardRecycerViewAdapter {
             Glide.with(this).load(it.image).into(binding.ivCard)
             binding.mlMyDeck.transitionToEnd()
         }
@@ -57,7 +56,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
             setHasFixedSize(true);
             setItemViewCacheSize(20);
             adapter = rvAdapter
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = GridLayoutManager(requireContext(), 3)
         }
     }
 
