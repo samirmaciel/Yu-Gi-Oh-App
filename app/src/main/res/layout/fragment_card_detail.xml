@@ -50,32 +50,6 @@
             android:text="@string/title_back"/>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btnSave"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBack" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/buttondefault"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="15dp"
-            android:text="@string/title_save"/>
-    </androidx.cardview.widget.CardView>
-
     <ImageView
         android:id="@+id/ivArrowBack"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,16 +73,28 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/titleCard"
-        android:layout_width="0dp"
+        android:id="@+id/tvSave"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
+        android:text="@string/title_save"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/imageView2"
+        app:layout_constraintTop_toTopOf="@id/imageView2"/>
+
+    <TextView
+        android:id="@+id/titleCard"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:text="Card Name"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 

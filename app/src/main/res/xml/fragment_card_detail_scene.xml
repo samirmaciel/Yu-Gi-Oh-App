@@ -72,6 +72,14 @@
                motion:motionTarget="@+id/btnSave"
                motion:framePosition="50"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tvSave"
+               motion:framePosition="50"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tvSave"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 

@@ -2,6 +2,7 @@ package com.samirmaciel.yugiohapp.modules.myDeck
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
         viewModel.cardList.observe(this){
             binding.tvNoneCards.visibility = View.GONE
             rvAdapter.submitList(it)
+            Toast.makeText(requireContext(), "Cards: " + it.size, Toast.LENGTH_SHORT).show()
         }
 
     }

@@ -9,6 +9,8 @@
     android:background="@android:color/transparent"
     app:layoutDescription="@xml/fragment_my_deck_scene">
 
+
+
     <TextView
         android:id="@+id/tvNoneCards"
         android:layout_width="wrap_content"
@@ -21,16 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMyDeck"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recycler_item_card" />
 
     <ImageView
         android:id="@+id/ivCard"
@@ -70,6 +62,16 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyDeck"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recycler_item_card" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

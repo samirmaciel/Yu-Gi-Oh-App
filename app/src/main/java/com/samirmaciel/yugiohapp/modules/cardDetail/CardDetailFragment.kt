@@ -1,6 +1,7 @@
 package com.samirmaciel.yugiohapp.modules.cardDetail
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -32,47 +33,58 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         super.onResume()
 
         binding.ivCard.setOnClickListener{
-
-            binding.mlCardDetail.transitionToEnd{
-                if(viewModel.targetCardState.value == 1){
-                    binding.btnSave.visibility = View.GONE
-                }
-            }
+            binding.mlCardDetail.transitionToEnd()
         }
 
         binding.btnBack.setOnClickListener{
-
             binding.mlCardDetail.transitionToStart()
         }
 
         binding.ivArrowBack.setOnClickListener{
-
+            viewModel.targetCardState.value = 0
             activityClickListener.backViewToHome()
-
         }
 
-        binding.btnSave.setOnClickListener{
+        binding.tvSave.setOnClickListener{
             viewModel.insertCard(viewModel.targetDetailCard.value!!)
-            viewModel.targetCardState.value = 1
-            Toast.makeText(requireContext(), "Carta salva com sucesso!", Toast.LENGTH_SHORT).show()
+            binding.tvSave.animate().apply {
+                duration = 500
+                rotationY(360f)
+            }.withEndAction {
+                binding.tvSave.apply {
+                    text = resources.getText(R.string.title_salved)
+                    setTextColor(Color.parseColor("#5DB96D"))
+                }
+            }
         }
 
         viewModel.targetCardState.observe(this){
-            if(it == 1){
-                binding.btnSave.visibility = View.GONE
-           }
+            checkTargetCard(it)
         }
 
         viewModel.targetDetailCard.observe(this){
-
             Glide.with(requireContext()).load(it.image).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
             binding.textDescriptionCard.setText(it.desc)
             binding.titleCard.setText(it.name)
             binding.typeCard.setText(it.type)
             binding.powerCard.setText("${it.atk}/${it.def}")
-
         }
     }
+
+    private fun checkTargetCard(numberState : Int) {
+        if (numberState == 1) {
+            binding.tvSave.apply {
+                text = resources.getText(R.string.title_salved)
+                setTextColor(Color.parseColor("#5DB96D"))
+            }
+        } else {
+            binding.tvSave.apply {
+                text = resources.getText(R.string.title_save)
+                setTextColor(Color.parseColor("#ffffff"))
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
@@ -84,15 +96,9 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         super.onAttach(context)
 
         try {
-
             activityClickListener = context as ClickListener
-
         }catch (e : Exception){
-
         }
     }
 
-    private fun checkCardInDatabaseInternal(card: Card){
-
-    }
 }

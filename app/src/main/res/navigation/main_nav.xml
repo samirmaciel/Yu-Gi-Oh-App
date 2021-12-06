@@ -9,5 +9,14 @@
         android:id="@+id/cardDetailFragment"
         android:name="com.samirmaciel.yugiohapp.modules.cardDetail.CardDetailFragment"
         android:label="fragment_card_detail"
-        tools:layout="@layout/fragment_card_detail" />
+        tools:layout="@layout/fragment_card_detail" >
+        <action
+            android:id="@+id/action_cardDetailFragment_to_myDeckFragment"
+            app:destination="@id/myDeckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myDeckFragment"
+        android:name="com.samirmaciel.yugiohapp.modules.myDeck.MyDeckFragment"
+        android:label="fragment_my_deck"
+        tools:layout="@layout/fragment_my_deck" />
 </navigation>

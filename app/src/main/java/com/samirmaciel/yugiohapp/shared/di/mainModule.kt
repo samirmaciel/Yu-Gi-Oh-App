@@ -21,14 +21,16 @@ val mainModule = module {
     }
 
     viewModel{
-
-        MyDeckViewModel(
-            repositoryInternal = get()
-        )
-
         MainViewModel(
             repositoryExternal = get(),
             repositoryInternal = get()
         )
+    }
+
+    viewModel{
+        MyDeckViewModel(
+            repositoryInternal = get()
+        )
+
     }
 }

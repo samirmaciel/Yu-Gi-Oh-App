@@ -4,4 +4,6 @@
     <string name="title_back">Voltar</string>
     <string name="none_cards">Nenhuma carta salva</string>
     <string name="title_save">Salvar</string>
+    <string name="title_salved">Salvo!</string>
+    <string name="title_my_deck">Meu Deck</string>
 </resources>

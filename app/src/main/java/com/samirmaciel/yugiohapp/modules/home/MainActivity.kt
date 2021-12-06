@@ -1,7 +1,9 @@
 package com.samirmaciel.yugiohapp.modules.home
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
@@ -20,7 +22,6 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -35,9 +36,12 @@ class MainActivity : AppCompatActivity(), ClickListener {
     override fun onResume() {
         super.onResume()
 
+        binding.btnToDeck.setOnClickListener{
+            findNavController(R.id.fragmentContainer).navigate(R.id.action_cardDetailFragment_to_myDeckFragment)
+            binding.motionLayoutMain.transitionToEnd()
+        }
 
         viewModel.listOfCards.observe(this){
-
             rvCardPresenterAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
