@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -12,13 +11,12 @@ import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentCardDetailBinding
 import com.samirmaciel.yugiohapp.modules.home.MainViewModel
 import com.samirmaciel.yugiohapp.shared.ClickListener
-import com.samirmaciel.yugiohapp.shared.domain.model.Card
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
 
 class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
-    lateinit var activityClickListener : ClickListener
+    lateinit var backToHomeAnimation : ClickListener
 
     private var _binding : FragmentCardDetailBinding? = null
     private val binding : FragmentCardDetailBinding get() = _binding!!
@@ -42,7 +40,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         binding.ivArrowBack.setOnClickListener{
             viewModel.targetCardState.value = 0
-            activityClickListener.backViewToHome()
+            backToHomeAnimation.transitionToStart("CardDetail")
         }
 
         binding.tvSave.setOnClickListener{
@@ -96,7 +94,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         super.onAttach(context)
 
         try {
-            activityClickListener = context as ClickListener
+            backToHomeAnimation = context as ClickListener
         }catch (e : Exception){
         }
     }

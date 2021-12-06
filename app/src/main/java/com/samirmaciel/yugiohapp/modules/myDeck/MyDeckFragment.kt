@@ -1,20 +1,22 @@
 package com.samirmaciel.yugiohapp.modules.myDeck
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentMyDeckBinding
+import com.samirmaciel.yugiohapp.shared.ClickListener
 import com.samirmaciel.yugiohapp.shared.adapter.CardPresenterAdapter
-import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
 
+    lateinit var backToHomeAnimation : ClickListener
     private var _binding : FragmentMyDeckBinding? = null
     private val binding : FragmentMyDeckBinding get() = _binding!!
     lateinit var rvAdapter : CardPresenterAdapter
@@ -30,14 +32,18 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     override fun onResume() {
         super.onResume()
 
+        binding.ivArrowBack.setOnClickListener{
+            backToHomeAnimation.transitionToStart("MyDeck")
+        }
+
         binding.btnBack.setOnClickListener{
             binding.mlMyDeck.transitionToStart()
         }
 
         viewModel.cardList.observe(this){
-            binding.tvNoneCards.visibility = View.GONE
-            rvAdapter.submitList(it)
             Toast.makeText(requireContext(), "Cards: " + it.size, Toast.LENGTH_SHORT).show()
+            rvAdapter.submitList(it)
+            rvAdapter.notifyDataSetChanged()
         }
 
     }
@@ -48,8 +54,20 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
             binding.mlMyDeck.transitionToEnd()
         }
         binding.rvMyDeck.apply {
+            setHasFixedSize(true);
+            setItemViewCacheSize(20);
             adapter = rvAdapter
-            layoutManager = GridLayoutManager(requireContext(), 3)
+            layoutManager = GridLayoutManager(requireContext(), 2)
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        try {
+            backToHomeAnimation = context as ClickListener
+        }catch (e : Exception){
+
         }
     }
 

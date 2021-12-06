@@ -73,8 +73,11 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     }
 
-    override fun backViewToHome() {
+    override fun transitionToStart(route : String) {
         binding.motionLayoutMain.transitionToStart()
         setRandomPersonImage(viewModel.getRandomImagePerson())
+        if(route == "MyDeck") {
+            findNavController(R.id.fragmentContainer).navigate(R.id.action_myDeckFragment_to_cardDetailFragment)
+        }
     }
 }

@@ -18,5 +18,11 @@
         android:id="@+id/myDeckFragment"
         android:name="com.samirmaciel.yugiohapp.modules.myDeck.MyDeckFragment"
         android:label="fragment_my_deck"
-        tools:layout="@layout/fragment_my_deck" />
+        tools:layout="@layout/fragment_my_deck" >
+        <action
+            android:id="@+id/action_myDeckFragment_to_cardDetailFragment"
+            app:destination="@id/cardDetailFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"/>
+    </fragment>
 </navigation>
