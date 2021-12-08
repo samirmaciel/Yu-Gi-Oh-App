@@ -50,6 +50,12 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
         }
     }
 
+    fun searchCard(keyWord : String) : List<Card>{
+        return listOfCards.value!!.filter {
+            it.name.contains(keyWord, true)
+        }
+    }
+
     fun findCardById(id : Long){
         viewModelScope.launch {
             val card = repositoryInternal.findById(id)
