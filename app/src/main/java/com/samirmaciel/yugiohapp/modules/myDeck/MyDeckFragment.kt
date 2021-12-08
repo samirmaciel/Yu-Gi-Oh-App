@@ -39,13 +39,13 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
             backToHomeAnimation.transitionToStart("MyDeck")
         }
 
-        binding.btnRemove.setOnClickListener{
+        binding.mlMyDeckDetail.btnRemove.setOnClickListener{
             if(viewModel.selectedCard != null){
                 deleteCard(viewModel.selectedCard!!)
             }
         }
 
-        binding.btnBack.setOnClickListener{
+        binding.mlMyDeckDetail.btnBack.setOnClickListener{
             binding.mlMyDeck.transitionToStart()
         }
 
@@ -59,7 +59,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     private fun initRecyclerView(){
         rvAdapter = CardRecycerViewAdapter {
             viewModel.selectedCard = it
-            Glide.with(this).load(it.image).into(binding.ivCard)
+            Glide.with(this).load(it.image).into(binding.mlMyDeckDetail.ivCard)
             binding.mlMyDeck.transitionToEnd()
         }
         binding.rvMyDeck.apply {

@@ -6,7 +6,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/dialog_fragment_cardimage.xml" value="0.37916666666666665" />
         <entry key="app/src/main/res/layout/fragment_card_detail.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_my_deck.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_my_deck.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/ml_my_deck_detail_card.xml" value="0.37916666666666665" />
         <entry key="app/src/main/res/layout/recycler_item_card.xml" value="0.37916666666666665" />
       </map>
     </option>

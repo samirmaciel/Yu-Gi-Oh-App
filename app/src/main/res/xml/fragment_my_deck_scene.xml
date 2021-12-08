@@ -13,10 +13,6 @@
                motion:framePosition="0"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/btnBack"
-               motion:framePosition="0"
-               android:alpha="0" />
-           <KeyAttribute
                motion:motionTarget="@+id/rvMyDeck"
                motion:framePosition="100"
                android:alpha="0" />
@@ -25,10 +21,6 @@
                motion:framePosition="20"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/btnBack"
-               motion:framePosition="20"
-               android:alpha="0" />
-           <KeyAttribute
                motion:motionTarget="@+id/rvMyDeck"
                motion:framePosition="80"
                android:alpha="0" />
@@ -49,11 +41,11 @@
                motion:framePosition="100"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/btnRemove"
+               motion:motionTarget="@+id/mlMyDeckDetail"
                motion:framePosition="0"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/btnRemove"
+               motion:motionTarget="@+id/mlMyDeckDetail"
                motion:framePosition="20"
                android:alpha="0" />
        </KeyFrameSet>

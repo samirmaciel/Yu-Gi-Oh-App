@@ -9,71 +9,9 @@
     android:background="@android:color/transparent"
     app:layoutDescription="@xml/fragment_my_deck_scene">
 
-
-    <ImageView
-        android:id="@+id/ivCard"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="20dp"
-        android:src="@drawable/card1"
-        app:layout_constraintBottom_toTopOf="@id/btnRemove"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btnRemove"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@id/btnBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/buttondefault" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@string/title_remove"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btnBack"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/buttondefault" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@string/title_back"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+    <include
+        android:id="@+id/mlMyDeckDetail"
+        layout="@layout/ml_my_deck_detail_card"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMyDeck"
