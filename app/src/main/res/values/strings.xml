@@ -6,4 +6,5 @@
     <string name="title_save">Salvar</string>
     <string name="title_salved">Salvo!</string>
     <string name="title_my_deck">Meu Deck</string>
+    <string name="title_remove">Remover</string>
 </resources>

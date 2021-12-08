@@ -10,12 +10,13 @@ import kotlinx.coroutines.launch
 class MyDeckViewModel(private val repositoryInternal : CardRepositoryImpl) : ViewModel() {
 
     var cardList : MutableLiveData<List<Card>> = MutableLiveData()
+    var selectedCard : Card? = null
 
     init {
         getAllCards()
     }
 
-    private fun getAllCards(){
+    fun getAllCards(){
         viewModelScope.launch {
             cardList.postValue(repositoryInternal.getAllCards())
         }

@@ -48,6 +48,14 @@
                motion:motionTarget="@+id/ivArrowBack"
                motion:framePosition="100"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/btnRemove"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/btnRemove"
+               motion:framePosition="20"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 
@@ -77,6 +85,29 @@
                 motion:attributeName="clickable"
                 motion:customBoolean="true" />
         </Constraint>
+        <Constraint
+            android:id="@+id/btnRemove"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/btnBack"
+            motion:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="enabled"
+                motion:customBoolean="false" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/btnBack"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            motion:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="enabled"
+                motion:customBoolean="false" />
+        </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -102,5 +133,28 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="16dp"
             android:translationY="750dp"></Constraint>
+        <Constraint
+            android:id="@+id/btnBack"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            motion:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="enabled"
+                motion:customBoolean="true" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/btnRemove"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/btnBack"
+            motion:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="enabled"
+                motion:customBoolean="true" />
+        </Constraint>
     </ConstraintSet>
 </MotionScene>
