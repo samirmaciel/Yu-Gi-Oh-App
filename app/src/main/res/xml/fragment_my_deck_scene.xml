@@ -64,6 +64,19 @@
                 motion:attributeName="enabled"
                 motion:customBoolean="true" />
         </Constraint>
+        <Constraint
+            android:id="@+id/rvMyDeck"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/ivArrowBack"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp">
+            <CustomAttribute
+                motion:attributeName="clickable"
+                motion:customBoolean="true" />
+        </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -79,5 +92,15 @@
                 motion:attributeName="enabled"
                 motion:customBoolean="false" />
         </Constraint>
+        <Constraint
+            android:id="@+id/rvMyDeck"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/ivArrowBack"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:translationY="750dp"></Constraint>
     </ConstraintSet>
 </MotionScene>

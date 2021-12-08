@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
             rvCardRecycerViewAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
+
     }
 
     private fun initRecycler(){
