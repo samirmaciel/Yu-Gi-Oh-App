@@ -11,6 +11,7 @@ import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentCardDetailBinding
 import com.samirmaciel.yugiohapp.modules.home.MainViewModel
 import com.samirmaciel.yugiohapp.shared.ClickListener
+import com.samirmaciel.yugiohapp.shared.domain.model.Card
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
 
@@ -39,12 +40,12 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         }
 
         binding.ivArrowBack.setOnClickListener{
-            viewModel.targetCardState.value = 0
+            viewModel.selectedCardState.value = 0
             backToHomeAnimation.transitionToStart("CardDetail")
         }
 
         binding.tvSave.setOnClickListener{
-            viewModel.insertCard(viewModel.targetDetailCard.value!!)
+            viewModel.insertCard(viewModel.selectedCard.value!!)
             binding.tvSave.animate().apply {
                 duration = 500
                 rotationY(360f)
@@ -56,21 +57,17 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
             }
         }
 
-        viewModel.targetCardState.observe(this){
+        viewModel.selectedCardState.observe(this){
             checkTargetCard(it)
         }
 
-        viewModel.targetDetailCard.observe(this){
-            Glide.with(requireContext()).load(it.image).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
-            binding.textDescriptionCard.setText(it.desc)
-            binding.titleCard.setText(it.name)
-            binding.typeCard.setText(it.type)
-            binding.powerCard.setText("${it.atk}/${it.def}")
+        viewModel.selectedCard.observe(this){
+            bindCard(it)
         }
     }
 
-    private fun checkTargetCard(numberState : Int) {
-        if (numberState == 1) {
+    private fun checkTargetCard(state : Int) {
+        if (state == 1) {
             binding.tvSave.apply {
                 text = resources.getText(R.string.title_salved)
                 setTextColor(Color.parseColor("#5DB96D"))
@@ -81,6 +78,14 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                 setTextColor(Color.parseColor("#ffffff"))
             }
         }
+    }
+
+    private fun bindCard(card : Card){
+        Glide.with(requireContext()).load(card.image).transition(DrawableTransitionOptions.withCrossFade()).into(binding.ivCard)
+        binding.textDescriptionCard.setText(card.desc)
+        binding.titleCard.setText(card.name)
+        binding.typeCard.setText(card.type)
+        binding.powerCard.setText("${card.atk}/${card.def}")
     }
 
     override fun onDestroy() {

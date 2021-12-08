@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.repository.RepositoryAPI
-import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.CardEntity
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.DataResponse
 import com.samirmaciel.yugiohapp.shared.data.dataExternal.model.toCard
 import com.samirmaciel.yugiohapp.shared.domain.model.Card
@@ -20,10 +19,15 @@ import java.util.stream.Collectors
 
 class MainViewModel(private val repositoryExternal : RepositoryAPI, private val repositoryInternal : CardRepositoryImpl) : ViewModel() {
 
-    var targetDetailCard : MutableLiveData<Card> = MutableLiveData()
-    var targetCardState : MutableLiveData<Int> = MutableLiveData(0)
-    var listOfCards : MutableLiveData<MutableList<Card>> = MutableLiveData()
+    var selectedCard : MutableLiveData<Card> = MutableLiveData()
+    var selectedCardState : MutableLiveData<Int> = MutableLiveData(UNSAVED_CARD)
+    var searchCardList : MutableLiveData<List<Card>> = MutableLiveData()
+    var apiCardList : MutableLiveData<MutableList<Card>> = MutableLiveData()
 
+    companion object {
+        const val SAVED_CARD = 1
+        const val UNSAVED_CARD = 0
+    }
 
     init {
         getAllCards()
@@ -42,7 +46,7 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
                         it.toCard()
                     }?.collect(Collectors.toList())
 
-                    listOfCards.postValue(listCard)
+                    apiCardList.postValue(listCard)
                 }
                 override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 }
@@ -50,8 +54,8 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
         }
     }
 
-    fun searchCard(keyWord : String) : List<Card>{
-        return listOfCards.value!!.filter {
+    fun searchCard(keyWord : String){
+        searchCardList.value = apiCardList.value!!.filter {
             it.name.contains(keyWord, true)
         }
     }
@@ -60,9 +64,9 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
         viewModelScope.launch {
             val card = repositoryInternal.findById(id)
             if(card != null){
-                targetCardState.postValue(1)
+                selectedCardState.postValue(SAVED_CARD)
             }else{
-                targetCardState.postValue(0)
+                selectedCardState.postValue(UNSAVED_CARD)
             }
         }
     }

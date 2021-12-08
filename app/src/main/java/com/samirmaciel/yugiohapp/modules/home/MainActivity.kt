@@ -1,5 +1,6 @@
 package com.samirmaciel.yugiohapp.modules.home
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN) //Make keyboard stay overlayd layout
     }
 
     override fun onStart() {
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
         super.onResume()
 
         binding.etSearchCard.doOnTextChanged{ text, start, before, count ->
-            searchCard(text.toString())
+            viewModel.searchCard(text.toString())
         }
 
         binding.btnToDeck.setOnClickListener{
@@ -48,7 +49,14 @@ class MainActivity : AppCompatActivity(), ClickListener {
             binding.motionLayoutMain.transitionToEnd()
         }
 
-        viewModel.listOfCards.observe(this){
+        viewModel.searchCardList.observe(this){
+            with(rvCardRecycerViewAdapter) {
+                submitList(it)
+                notifyDataSetChanged()
+            }
+        }
+
+        viewModel.apiCardList.observe(this){
             rvCardRecycerViewAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
@@ -59,7 +67,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
         rvCardRecycerViewAdapter = CardRecycerViewAdapter {
             binding.motionLayoutMain.transitionToEnd()
-            viewModel.targetDetailCard.value = it
+            viewModel.selectedCard.value = it
             viewModel.findCardById(it.id)
         }
 
@@ -79,11 +87,6 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     private fun setRandomPersonImage(imageResource : Int){
         binding.ivPerson.setImageResource(imageResource)
-    }
-
-    private fun searchCard(keyWord : String){
-        rvCardRecycerViewAdapter.submitList(viewModel.searchCard(keyWord))
-        rvCardRecycerViewAdapter.notifyDataSetChanged()
     }
 
     override fun transitionToStart(route : String) {
