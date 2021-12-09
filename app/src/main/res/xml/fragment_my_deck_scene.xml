@@ -48,6 +48,10 @@
                motion:motionTarget="@+id/mlMyDeckDetail"
                motion:framePosition="20"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/ivArrowBack"
+               motion:framePosition="2"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 
@@ -100,6 +104,7 @@
                 motion:attributeName="enabled"
                 motion:customBoolean="false" />
         </Constraint>
+        <Constraint android:id="@+id/mlMyDeckDetail"></Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -110,7 +115,8 @@
             android:layout_marginStart="16dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:translationX="-100dp">
             <CustomAttribute
                 motion:attributeName="enabled"
                 motion:customBoolean="false" />
@@ -148,5 +154,6 @@
                 motion:attributeName="enabled"
                 motion:customBoolean="true" />
         </Constraint>
+        <Constraint android:id="@+id/mlMyDeckDetail"></Constraint>
     </ConstraintSet>
 </MotionScene>

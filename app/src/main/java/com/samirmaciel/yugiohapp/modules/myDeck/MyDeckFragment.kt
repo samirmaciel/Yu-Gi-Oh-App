@@ -35,18 +35,28 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     override fun onResume() {
         super.onResume()
 
-        binding.ivArrowBack.setOnClickListener{
-            backToHomeAnimation.transitionToStart("MyDeck")
+        binding.mlMyDeckDetail.ivCard.setOnClickListener{
+            binding.mlMyDeckDetail.mlMyDeckCardDetail.transitionToEnd()
         }
 
-        binding.mlMyDeckDetail.btnRemove.setOnClickListener{
+        binding.mlMyDeckDetail.tvRemove.setOnClickListener{
             if(viewModel.selectedCard != null){
                 deleteCard(viewModel.selectedCard!!)
             }
+            viewModel.getAllCards()
+            rvAdapter.notifyDataSetChanged()
         }
 
-        binding.mlMyDeckDetail.btnBack.setOnClickListener{
+        binding.mlMyDeckDetail.btnShowCardBack.setOnClickListener{
+            binding.mlMyDeckDetail.mlMyDeckCardDetail.transitionToStart()
+        }
+
+        binding.mlMyDeckDetail.ivArrowBackDetail.setOnClickListener{
             binding.mlMyDeck.transitionToStart()
+        }
+
+        binding.ivArrowBack.setOnClickListener{
+            backToHomeAnimation.transitionToStart("MyDeck")
         }
 
         viewModel.cardList.observe(this){
@@ -58,8 +68,8 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
 
     private fun initRecyclerView(){
         rvAdapter = CardRecycerViewAdapter {
+            bindCardOnDetailView(it)
             viewModel.selectedCard = it
-            Glide.with(this).load(it.image).into(binding.mlMyDeckDetail.ivCard)
             binding.mlMyDeck.transitionToEnd()
         }
         binding.rvMyDeck.apply {
@@ -67,6 +77,16 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
             setItemViewCacheSize(20);
             adapter = rvAdapter
             layoutManager = GridLayoutManager(requireContext(), 3)
+        }
+    }
+
+    private fun bindCardOnDetailView(card : Card){
+        binding.apply {
+            Glide.with(this@MyDeckFragment).load(card.image).into(binding.mlMyDeckDetail.ivCard)
+            mlMyDeckDetail.titleCard.text = card.name
+            mlMyDeckDetail.typeCard.text = card.type
+            mlMyDeckDetail.textDescriptionCard.text = card.desc
+            mlMyDeckDetail.powerCard.text = "${card.atk}/${card.def}"
         }
     }
 

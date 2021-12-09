@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/layout/fragment_my_deck.xml" value="0.12" />
         <entry key="app/src/main/res/layout/ml_my_deck_detail_card.xml" value="0.37916666666666665" />
         <entry key="app/src/main/res/layout/recycler_item_card.xml" value="0.37916666666666665" />
+        <entry key="app/src/main/res/xml/my_deck_detail_card.xml" value="0.37916666666666665" />
       </map>
     </option>
   </component>
