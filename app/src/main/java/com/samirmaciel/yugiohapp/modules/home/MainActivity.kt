@@ -1,6 +1,5 @@
 package com.samirmaciel.yugiohapp.modules.home
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.ActivityMainBinding
 import com.samirmaciel.yugiohapp.shared.ClickListener
-import com.samirmaciel.yugiohapp.shared.adapter.CardRecycerViewAdapter
+import com.samirmaciel.yugiohapp.shared.adapter.CardRecyclerViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), ClickListener {
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     private var _binding : ActivityMainBinding? = null
     private val binding : ActivityMainBinding get() = _binding!!
-    lateinit var rvCardRecycerViewAdapter : CardRecycerViewAdapter
+    lateinit var rvCardRecyclerViewAdapter : CardRecyclerViewAdapter
 
     private val viewModel : MainViewModel by viewModel()
 
@@ -50,14 +49,14 @@ class MainActivity : AppCompatActivity(), ClickListener {
         }
 
         viewModel.searchCardList.observe(this){
-            with(rvCardRecycerViewAdapter) {
+            with(rvCardRecyclerViewAdapter) {
                 submitList(it)
                 notifyDataSetChanged()
             }
         }
 
         viewModel.apiCardList.observe(this){
-            rvCardRecycerViewAdapter.submitList(it)
+            rvCardRecyclerViewAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
 
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     private fun initRecycler(){
 
-        rvCardRecycerViewAdapter = CardRecycerViewAdapter {
+        rvCardRecyclerViewAdapter = CardRecyclerViewAdapter {
             binding.motionLayoutMain.transitionToEnd()
             viewModel.selectedCard.value = it
             viewModel.findCardById(it.id)
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
         binding.rvCards.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-            adapter = rvCardRecycerViewAdapter
+            adapter = rvCardRecyclerViewAdapter
         }
 
 

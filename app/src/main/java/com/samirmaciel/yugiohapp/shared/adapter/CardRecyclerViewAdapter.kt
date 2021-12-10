@@ -11,7 +11,7 @@ import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.RecyclerItemCardBinding
 import com.samirmaciel.yugiohapp.shared.domain.model.Card
 
-class CardRecycerViewAdapter(private val itemClick : (Card) -> Unit) : ListAdapter<Card, CardRecycerViewAdapter.ViewHolder>(CardDiffiUtil()) {
+class CardRecyclerViewAdapter(private val itemClick : (Card) -> Unit) : ListAdapter<Card, CardRecyclerViewAdapter.ViewHolder>(CardDiffiUtil()) {
 
 
     inner class ViewHolder(private val bind : RecyclerItemCardBinding) : RecyclerView.ViewHolder(bind.root){
