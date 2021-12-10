@@ -55,6 +55,7 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
     }
 
     fun searchCard(keyWord : String){
+
         searchCardList.value = apiCardList.value!!.filter {
             it.name.contains(keyWord, true)
         }

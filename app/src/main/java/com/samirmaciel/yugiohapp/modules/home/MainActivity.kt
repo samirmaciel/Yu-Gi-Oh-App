@@ -1,7 +1,9 @@
 package com.samirmaciel.yugiohapp.modules.home
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.findNavController
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
 
@@ -59,7 +62,6 @@ class MainActivity : AppCompatActivity(), ClickListener {
             rvCardRecyclerViewAdapter.submitList(it)
             binding.tvCountCards.setText("${resources.getText(R.string.title_count_cards)} ${it.size}")
         }
-
     }
 
     private fun initRecycler(){
