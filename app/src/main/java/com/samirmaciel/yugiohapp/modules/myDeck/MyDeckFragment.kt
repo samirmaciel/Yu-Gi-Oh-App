@@ -1,5 +1,6 @@
 package com.samirmaciel.yugiohapp.modules.myDeck
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -12,7 +13,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.samirmaciel.yugiohapp.R
 import com.samirmaciel.yugiohapp.databinding.FragmentMyDeckBinding
 import com.samirmaciel.yugiohapp.shared.ClickListener
-import com.samirmaciel.yugiohapp.shared.adapter.CardRecyclerViewAdapter
+import com.samirmaciel.yugiohapp.shared.adapter.CardRVMainAdapter
+import com.samirmaciel.yugiohapp.shared.adapter.CardRVMyDeckAdapter
 import com.samirmaciel.yugiohapp.shared.domain.model.Card
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,7 +23,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     lateinit var backToHomeAnimation : ClickListener
     private var _binding : FragmentMyDeckBinding? = null
     private val binding : FragmentMyDeckBinding get() = _binding!!
-    lateinit var rvAdapter : CardRecyclerViewAdapter
+    lateinit var rvAdapter : CardRVMyDeckAdapter
     private val viewModel : MyDeckViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
         initRecyclerView()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
 
@@ -66,14 +69,13 @@ class MyDeckFragment : Fragment(R.layout.fragment_my_deck) {
     }
 
     private fun initRecyclerView(){
-        rvAdapter = CardRecyclerViewAdapter {
+        rvAdapter = CardRVMyDeckAdapter{
             bindCardOnDetailView(it)
             viewModel.selectedCard = it
             binding.mlMyDeck.transitionToEnd()
         }
         binding.rvMyDeck.apply {
             setHasFixedSize(true);
-            setItemViewCacheSize(20);
             adapter = rvAdapter
             layoutManager = GridLayoutManager(requireContext(), 3)
         }

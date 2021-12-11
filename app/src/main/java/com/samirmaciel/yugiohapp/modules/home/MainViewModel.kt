@@ -21,8 +21,8 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
 
     var selectedCard : MutableLiveData<Card> = MutableLiveData()
     var selectedCardState : MutableLiveData<Int> = MutableLiveData(UNSAVED_CARD)
-    var searchCardList : MutableLiveData<List<Card>> = MutableLiveData()
-    var apiCardList : MutableLiveData<MutableList<Card>> = MutableLiveData()
+    var cardList : MutableLiveData<List<Card>> = MutableLiveData()
+    var cardListFromApi : MutableLiveData<List<Card>> = MutableLiveData()
 
     companion object {
         const val SAVED_CARD = 1
@@ -46,7 +46,8 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
                         it.toCard()
                     }?.collect(Collectors.toList())
 
-                    apiCardList.postValue(listCard)
+                    cardListFromApi.postValue(listCard)
+                    cardList.postValue(listCard)
                 }
                 override fun onFailure(call: Call<DataResponse>, t: Throwable) {
                 }
@@ -55,8 +56,7 @@ class MainViewModel(private val repositoryExternal : RepositoryAPI, private val 
     }
 
     fun searchCard(keyWord : String){
-
-        searchCardList.value = apiCardList.value!!.filter {
+        cardList.value = cardListFromApi.value!!.filter {
             it.name.contains(keyWord, true)
         }
     }
